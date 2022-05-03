@@ -9,5 +9,6 @@ To avoid tools like Excel, which can do the same operations and plots but are mo
 
 The project structure goes as follows:
 
-**Data folder:** where the initial input_csv will be. \\n
+**Data folder:** where the initial input_csv will be.
+
 **Graphs:** where the resulting graphs will be stored.
