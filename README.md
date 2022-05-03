@@ -18,5 +18,6 @@ The project structure goes as follows:
 
 In order to run main.py, an argument called **input_csv** has to be added that points to the name of the csv INSIDE of the **Data** folder. 
 
-![image](https://user-images.githubusercontent.com/65911072/166419087-8372c2a5-33e0-4aa4-a688-7fab4e2dfb48.png)
+![image](https://user-images.githubusercontent.com/65911072/166419261-bfda3203-413b-40a8-9b05-7b40334fa8e0.png)
+
 
