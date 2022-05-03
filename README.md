@@ -6,3 +6,8 @@ To avoid tools like Excel, which can do the same operations and plots but are mo
 1. Clean data and export the clean csv;
 2. Print and save some descriptive statistics about the the compost bin;
 3. Visualize and save plots necessary for facilitating the writing of the thesis.
+
+The project structure goes as follows:
+
+**Data folder:** where the initial input_csv will be.
+**Graphs:** where the resulting graphs will be stored.
