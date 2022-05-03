@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 def clean_data(input_csv):
 
-    raw_data = pd.read_csv(input_csv, sep=',')
+    raw_data = pd.read_csv(f'{os.getcwd()}\\Data\\{input_csv}', sep=',')
 
     # Print the different sensors
     gr = raw_data.groupby('Channel')['Sensor Name']
@@ -21,8 +21,6 @@ def clean_data(input_csv):
     raw_data['Value'] = raw_data['Value'].round(3)
 
     # Add chamber column
-    camara1_channels = [11,12,13,16]
-    camara2_channels = [14,17,18,19]
 
     raw_data['Chamber'] = raw_data['Channel'].apply(separate_channels)
 
@@ -33,14 +31,18 @@ def clean_data(input_csv):
     print('Cleaned data: \n', cleaned_data.head(5))
 
     # Export to csv
+    print('Exporting cleaned data to CSV')
     file_noext = input_csv.split('.')[0]
-    cleaned_data.to_csv(f'./Data/{file_noext}_cleaned.csv')
+    cleaned_data.to_csv(f'./Data/{file_noext}_cleaned.csv', )
 
     
 
 # Helper functions
 
 def separate_channels(sensor_name):
+
+    camara1_channels = [11,12,13,16]
+    camara2_channels = [14,17,18,19]
 
     if (sensor_name in camara1_channels):
         return 1
