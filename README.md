@@ -12,3 +12,8 @@ The project structure goes as follows:
 **Data folder:** where the initial input_csv will be.
 
 **Graphs:** where the resulting graphs will be stored.
+
+
+## Running main
+
+In order to run main.py, an argument called **input_csv** has to be added that points to the name of the csv INSIDE of the **Data** folder. 
