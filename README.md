@@ -16,7 +16,7 @@ The project structure goes as follows:
 
 ## Running main
 
-In order to run main.py, an argument called **input_csv** has to be added that points to the name of the csv INSIDE of the **Data** folder. 
+From the project directory main.py can run with an argument called **input_csv** that has to be added to point to the name of the csv INSIDE of the **Data** folder. 
 
 ![image](https://user-images.githubusercontent.com/65911072/166419261-bfda3203-413b-40a8-9b05-7b40334fa8e0.png)
 
