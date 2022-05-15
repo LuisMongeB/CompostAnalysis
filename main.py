@@ -1,10 +1,12 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
-from utils.visualize import visualizeChamberHum, visualizeChamberOxi, visualizeChamberTemp
+from utils.visualize import visualizeChamberHum, visualizeChamberOxy, visualizeChamberTemp
 from utils.clean import clean_data
 import pandas as pd
 import os
 import argparse
+from utils.logger import write_to_txt
+import sys
 
 parser = argparse.ArgumentParser()
 parser.add_argument("--input_csv", type=str, required=True, help="path to csv")
@@ -14,7 +16,7 @@ args = parser.parse_args()
 def main(input_csv, metodo):
     
     print('1. Running main \n')
-    print('\t This will clean and visualize data.')
+    print('\t This will clean and visualize data.\n ')
     
     print('2. Cleaning data \n')
     input_csv_path = os.path.join(f'{os.getcwd()}\\data\\{args.input_csv}')
@@ -23,10 +25,12 @@ def main(input_csv, metodo):
 
     print('3. Reading cleaned_data')
     file_noext = input_csv.split('.')[0]
+
     cleaned_data = pd.read_csv(f'./data/{file_noext}_cleaned.csv', sep=',', index_col=0)
     # cleaned_data = pd.read_csv(input_csv_path, sep=',', index_col=0)
     cleaned_data['Datetime'] = pd.to_datetime(cleaned_data['Datetime'])
     print(cleaned_data.head())
+
 
     # Separating chambers
     print('4. Separating Chambers \n')
@@ -44,13 +48,12 @@ def main(input_csv, metodo):
 
     print('6. Saving Temp/Oxy/Hum Plots \n')
     for idx, chamber in enumerate([chamber0,chamber1,chamber2]):
-        visualizeChamberTemp(chamber=chamber, chamber_id=idx,  output_folder=graph_path, title=f'Chamber {idx}: Temperature')
-        visualizeChamberHum(chamber, idx, graph_path, title=f'Chamber {idx}: Humidity')
-        visualizeChamberOxi(chamber, idx, graph_path, f'Chamber {idx}: Oxygen')
+        if (idx != 0):
+            write_to_txt(file_noext, f'Chamber {idx}')
+        visualizeChamberTemp(chamber=chamber, chamber_id=idx,  output_folder=graph_path, title=f'Chamber {idx}: Temperature', log_path=file_noext)
+        visualizeChamberHum(chamber, idx, graph_path, title=f'Chamber {idx}: Humidity', log_path=file_noext)
+        visualizeChamberOxy(chamber, idx, graph_path, f'Chamber {idx}: Oxygen', log_path=file_noext)
         
-    # visualizeChamberTemp(chamber=chamber2, chamber_id=2,  output_folder=graph_path, title='Chamber 2: Temperature')        
-    # visualizeChamberHum(chamber2, 2, './Graphs', title='Chamber 2: Humidity')
-    # visualizeChamberOxi(chamber2, 2, './Graphs', 'Chamber 2: Oxygen')
     print('Completed.')
 
     return
